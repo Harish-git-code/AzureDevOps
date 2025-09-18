@@ -1,0 +1,8 @@
+location = "eastus"
+resource_group_name = "rg-3tier-sample"
+vm_size = "Standard_B2s"
+ssh_public_key = "ssh-rsa AAAA.... your_key_here"
+repo_url = "https://github.com/your-user/your-repo.git"
+repo_branch = "main"
+startup_command = "" # optional: e.g. "docker-compose up -d"
+public_ssh = true
