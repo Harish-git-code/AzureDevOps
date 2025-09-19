@@ -1,0 +1,71 @@
+info: Program[0]
+      Starting database seeding...
+info: Program[0]
+      Database seeding completed successfully
+info: Program[0]
+      Available roles: Admin, ProjectManager, Employee, HR, TeamLead
+info: Program[0]
+      Available policies: AdminPolicy, ProjectManagerPolicy, EmployeePolicy, HRPolicy, TeamLeadPolicy
+warn: Microsoft.AspNetCore.DataProtection.Repositories.EphemeralXmlRepository[50]
+      Using an in-memory repository. Keys will not be persisted to storage.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[59]
+      Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {b729acfc-5ccf-4038-9087-5b90fa990e1c} may be persisted to storage in unencrypted form.
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\ResumeBuilderAPI\wwwroot
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: ResumeBuilder.API.Services.AuthService[0]
+      Password reset configuration - TokenExpiryHours: 1, TimeZone: UTC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (83ms) [Parameters=[@__email_0='?' (Size = 150)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName]
+      FROM [Users] AS [u]
+      WHERE [u].[EmailAddress] = @__email_0 AND [u].[IsActive] = CAST(1 AS bit)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (14ms) [Parameters=[@p8='?' (DbType = Int32), @p0='?' (Size = 150), @p1='?' (DbType = Int32), @p2='?' (DbType = Boolean), @p3='?' (Size = 100), @p4='?' (Size = 255), @p5='?' (Size = 4000), @p6='?' (DbType = DateTime2), @p7='?' (Size = 100)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [Users] SET [EmailAddress] = @p0, [EmployeeId] = @p1, [IsActive] = @p2, [Name] = @p3, [Password] = @p4, [PasswordResetToken] = @p5, [PasswordResetTokenExpiry] = @p6, [UserName] = @p7
+      OUTPUT 1
+      WHERE [Id] = @p8;
+info: ResumeBuilder.API.Services.AuthService[0]
+      Password reset token generated for email: deepen.m@quadwave.com, expires at: 2025-08-08 07:33:31 UTC, current time: 2025-08-08 06:33:31 UTC
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@__email_0='?' (Size = 150)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate], [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name]
+      FROM [Users] AS [u]
+      LEFT JOIN [Employees] AS [e] ON [u].[EmployeeId] = [e].[Id]
+      LEFT JOIN [RolesMaster] AS [r] ON [e].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      WHERE [u].[EmailAddress] = @__email_0 AND [u].[IsActive] = CAST(1 AS bit)
+info: ResumeBuilder.API.Services.SettingsService[0]
+      Retrieving setting value for key: applicationurl
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[@__keyName_0='?' (Size = 150)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [s].[Id], [s].[JsonValue], [s].[KeyName]
+      FROM [Settings] AS [s]
+      WHERE [s].[KeyName] = @__keyName_0
+info: ResumeBuilder.API.Services.SettingsService[0]
+      Setting value retrieved successfully for key: applicationurl
+info: ResumeBuilder.API.Controllers.AuthController[0]
+      Using application URL from settings: http://106.51.226.4:5500
+info: ResumeBuilder.API.Controllers.AuthController[0]
+      Reset URL constructed: http://106.51.226.4:5500/reset-password
+info: ResumeBuilder.API.Services.EmployeeNotificationService[0]
+      Starting to send password reset email to deepen.m@quadwave.com
+info: ResumeBuilder.API.Services.Email.EmailServiceFactory[0]
+      Creating email service for provider: Smtp
+dbug: ResumeBuilder.API.Services.EmployeeNotificationService[0]
+      Attempting to send password reset email via Smtp...
+info: ResumeBuilder.API.Services.Email.Providers.SmtpEmailService[0]
+      Email sent successfully to deepen.m@quadwave.com via SMTP
+info: ResumeBuilder.API.Services.EmployeeNotificationService[0]
+      Password reset email sent successfully to deepen.m@quadwave.com using Smtp
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...

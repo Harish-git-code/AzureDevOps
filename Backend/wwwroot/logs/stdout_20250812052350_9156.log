@@ -1,0 +1,323 @@
+info: Program[0]
+      Starting database seeding...
+info: Program[0]
+      Database seeding completed successfully
+info: Program[0]
+      Available roles: Admin, ProjectManager, Employee, HR, TeamLead
+info: Program[0]
+      Available policies: AdminPolicy, ProjectManagerPolicy, EmployeePolicy, HRPolicy, TeamLeadPolicy
+warn: Microsoft.AspNetCore.DataProtection.Repositories.EphemeralXmlRepository[50]
+      Using an in-memory repository. Keys will not be persisted to storage.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[59]
+      Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {ec3965cb-4542-45d6-891e-95f6f6bae95d} may be persisted to storage in unencrypted form.
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\ResumeBuilderAPI\wwwroot
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: ResumeBuilder.API.Services.AuthService[0]
+      Attempting login for email: Ruchi.s@quadwave.com
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (90ms) [Parameters=[@__email_0='?' (Size = 150)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate], [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name]
+      FROM [Users] AS [u]
+      LEFT JOIN [Employees] AS [e] ON [u].[EmployeeId] = [e].[Id]
+      LEFT JOIN [RolesMaster] AS [r] ON [e].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      WHERE [u].[EmailAddress] = @__email_0 AND [u].[IsActive] = CAST(1 AS bit)
+info: ResumeBuilder.API.Services.AuthService[0]
+      Login successful for email: Ruchi.s@quadwave.com, role: Admin
+info: ResumeBuilder.API.Controllers.AuthController[0]
+      Login request from client type: TrustedSpaClient
+warn: LuckyPennySoftware.AutoMapper.License[0]
+      You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+info: ResumeBuilder.API.Services.LicenseService[0]
+      Aspose.Words license applied successfully from: D:\ResumeBuilderAPI\wwwroot\Licenses\Aspose.Total.lic
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Employees] AS [e]
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[ModifiedBy], [c].[ModifiedDate], [c].[Name], [s].[Id], [s].[EmployeeId], [s].[EndDate], [s].[ProjectId], [s].[StartDate], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM [ProjectMaster] AS [p]
+      INNER JOIN [Users] AS [u] ON [p].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [p].[ModifiedBy] = [u0].[Id]
+      LEFT JOIN [Users] AS [u1] ON [p].[ProjectManager] = [u1].[Id]
+      LEFT JOIN [ClientMaster] AS [c] ON [p].[ClientId] = [c].[Id]
+      LEFT JOIN (
+          SELECT [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate], [e].[Id] AS [Id0], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId] AS [EmployeeId0], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [ProjectEmployeeMappings] AS [p0]
+          INNER JOIN [Employees] AS [e] ON [p0].[EmployeeId] = [e].[Id]
+      ) AS [s] ON [p].[Id] = [s].[ProjectId]
+      ORDER BY [p].[ProjectName], [p].[Id], [u].[Id], [u0].[Id], [u1].[Id], [c].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e0].[Id], [e0].[CreatedBy], [e0].[CreatedDate], [e0].[CurrentRoleId], [e0].[DateOfBirth], [e0].[DateOfExit], [e0].[DateOfJoining], [e0].[DisplayName], [e0].[EmailAddress], [e0].[EmployeeId], [e0].[FirstName], [e0].[Gender], [e0].[LastName], [e0].[Location], [e0].[MobileNumber], [e0].[ModifiedBy], [e0].[ModifiedDate], [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [g].[Id], [g].[Name], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [s].[Id], [s].[EmployeeId], [s].[ManagerId], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM (
+          SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [Employees] AS [e]
+          ORDER BY [e].[FirstName], [e].[LastName]
+          OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+      ) AS [e0]
+      LEFT JOIN [RolesMaster] AS [r] ON [e0].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      LEFT JOIN [Users] AS [u] ON [e0].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [e0].[ModifiedBy] = [u0].[Id]
+      LEFT JOIN [Genders] AS [g] ON [e0].[Gender] = [g].[Id]
+      LEFT JOIN [Users] AS [u1] ON [e0].[Id] = [u1].[EmployeeId]
+      LEFT JOIN (
+          SELECT [e1].[Id], [e1].[EmployeeId], [e1].[ManagerId], [e2].[Id] AS [Id0], [e2].[CreatedBy], [e2].[CreatedDate], [e2].[CurrentRoleId], [e2].[DateOfBirth], [e2].[DateOfExit], [e2].[DateOfJoining], [e2].[DisplayName], [e2].[EmailAddress], [e2].[EmployeeId] AS [EmployeeId0], [e2].[FirstName], [e2].[Gender], [e2].[LastName], [e2].[Location], [e2].[MobileNumber], [e2].[ModifiedBy], [e2].[ModifiedDate]
+          FROM [EmployeeManagerMap] AS [e1]
+          INNER JOIN [Employees] AS [e2] ON [e1].[ManagerId] = [e2].[Id]
+      ) AS [s] ON [e0].[Id] = [s].[EmployeeId]
+      ORDER BY [e0].[FirstName], [e0].[LastName], [e0].[Id], [r].[Id], [a].[Id], [u].[Id], [u0].[Id], [g].[Id], [u1].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [ResumeTemplates] AS [r]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[Id], [r].[Certificates], [r].[CreatedDate], [r].[IsDefaultTemplate], [r].[ModifiedDate], [r].[ProfessionalExperience], [r].[ProfileSummary], [r].[Projects], [r].[TemplateName]
+      FROM [ResumeTemplates] AS [r]
+      ORDER BY [r].[TemplateName]
+      OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName]
+      FROM [RolesMaster] AS [r]
+      INNER JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      LEFT JOIN [Users] AS [u] ON [r].[ModifiedBy] = [u].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e0].[Location]
+      FROM (
+          SELECT DISTINCT [e].[Location]
+          FROM [Employees] AS [e]
+          WHERE [e].[Location] IS NOT NULL AND [e].[Location] <> N''
+      ) AS [e0]
+      ORDER BY [e0].[Location]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Employees] AS [e]
+      WHERE EXISTS (
+          SELECT 1
+          FROM [Users] AS [u]
+          WHERE [e].[Id] = [u].[EmployeeId]) AND (
+          SELECT TOP(1) [u0].[IsActive]
+          FROM [Users] AS [u0]
+          WHERE [e].[Id] = [u0].[EmployeeId]
+          ORDER BY [u0].[Id]) = CAST(1 AS bit)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Employees] AS [e]
+      WHERE EXISTS (
+          SELECT 1
+          FROM [Users] AS [u]
+          WHERE [e].[Id] = [u].[EmployeeId]) AND (
+          SELECT TOP(1) [u0].[IsActive]
+          FROM [Users] AS [u0]
+          WHERE [e].[Id] = [u0].[EmployeeId]
+          ORDER BY [u0].[Id]) = CAST(1 AS bit)
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (28ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e0].[Id], [e0].[CreatedBy], [e0].[CreatedDate], [e0].[CurrentRoleId], [e0].[DateOfBirth], [e0].[DateOfExit], [e0].[DateOfJoining], [e0].[DisplayName], [e0].[EmailAddress], [e0].[EmployeeId], [e0].[FirstName], [e0].[Gender], [e0].[LastName], [e0].[Location], [e0].[MobileNumber], [e0].[ModifiedBy], [e0].[ModifiedDate], [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [u2].[Id], [u2].[EmailAddress], [u2].[EmployeeId], [u2].[IsActive], [u2].[Name], [u2].[Password], [u2].[PasswordResetToken], [u2].[PasswordResetTokenExpiry], [u2].[UserName], [g].[Id], [g].[Name], [u3].[Id], [u3].[EmailAddress], [u3].[EmployeeId], [u3].[IsActive], [u3].[Name], [u3].[Password], [u3].[PasswordResetToken], [u3].[PasswordResetTokenExpiry], [u3].[UserName], [s].[Id], [s].[EmployeeId], [s].[ManagerId], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM (
+          SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [Employees] AS [e]
+          WHERE EXISTS (
+              SELECT 1
+              FROM [Users] AS [u]
+              WHERE [e].[Id] = [u].[EmployeeId]) AND (
+              SELECT TOP(1) [u0].[IsActive]
+              FROM [Users] AS [u0]
+              WHERE [e].[Id] = [u0].[EmployeeId]
+              ORDER BY [u0].[Id]) = CAST(1 AS bit)
+          ORDER BY [e].[FirstName], [e].[LastName]
+          OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+      ) AS [e0]
+      LEFT JOIN [RolesMaster] AS [r] ON [e0].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      LEFT JOIN [Users] AS [u1] ON [e0].[CreatedBy] = [u1].[Id]
+      LEFT JOIN [Users] AS [u2] ON [e0].[ModifiedBy] = [u2].[Id]
+      LEFT JOIN [Genders] AS [g] ON [e0].[Gender] = [g].[Id]
+      LEFT JOIN [Users] AS [u3] ON [e0].[Id] = [u3].[EmployeeId]
+      LEFT JOIN (
+          SELECT [e1].[Id], [e1].[EmployeeId], [e1].[ManagerId], [e2].[Id] AS [Id0], [e2].[CreatedBy], [e2].[CreatedDate], [e2].[CurrentRoleId], [e2].[DateOfBirth], [e2].[DateOfExit], [e2].[DateOfJoining], [e2].[DisplayName], [e2].[EmailAddress], [e2].[EmployeeId] AS [EmployeeId0], [e2].[FirstName], [e2].[Gender], [e2].[LastName], [e2].[Location], [e2].[MobileNumber], [e2].[ModifiedBy], [e2].[ModifiedDate]
+          FROM [EmployeeManagerMap] AS [e1]
+          INNER JOIN [Employees] AS [e2] ON [e1].[ManagerId] = [e2].[Id]
+      ) AS [s] ON [e0].[Id] = [s].[EmployeeId]
+      ORDER BY [e0].[FirstName], [e0].[LastName], [e0].[Id], [r].[Id], [a].[Id], [u1].[Id], [u2].[Id], [g].[Id], [u3].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e0].[Id], [e0].[CreatedBy], [e0].[CreatedDate], [e0].[CurrentRoleId], [e0].[DateOfBirth], [e0].[DateOfExit], [e0].[DateOfJoining], [e0].[DisplayName], [e0].[EmailAddress], [e0].[EmployeeId], [e0].[FirstName], [e0].[Gender], [e0].[LastName], [e0].[Location], [e0].[MobileNumber], [e0].[ModifiedBy], [e0].[ModifiedDate], [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [u2].[Id], [u2].[EmailAddress], [u2].[EmployeeId], [u2].[IsActive], [u2].[Name], [u2].[Password], [u2].[PasswordResetToken], [u2].[PasswordResetTokenExpiry], [u2].[UserName], [g].[Id], [g].[Name], [u3].[Id], [u3].[EmailAddress], [u3].[EmployeeId], [u3].[IsActive], [u3].[Name], [u3].[Password], [u3].[PasswordResetToken], [u3].[PasswordResetTokenExpiry], [u3].[UserName], [s].[Id], [s].[EmployeeId], [s].[ManagerId], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM (
+          SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [Employees] AS [e]
+          WHERE EXISTS (
+              SELECT 1
+              FROM [Users] AS [u]
+              WHERE [e].[Id] = [u].[EmployeeId]) AND (
+              SELECT TOP(1) [u0].[IsActive]
+              FROM [Users] AS [u0]
+              WHERE [e].[Id] = [u0].[EmployeeId]
+              ORDER BY [u0].[Id]) = CAST(1 AS bit)
+          ORDER BY [e].[FirstName], [e].[LastName]
+          OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+      ) AS [e0]
+      LEFT JOIN [RolesMaster] AS [r] ON [e0].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      LEFT JOIN [Users] AS [u1] ON [e0].[CreatedBy] = [u1].[Id]
+      LEFT JOIN [Users] AS [u2] ON [e0].[ModifiedBy] = [u2].[Id]
+      LEFT JOIN [Genders] AS [g] ON [e0].[Gender] = [g].[Id]
+      LEFT JOIN [Users] AS [u3] ON [e0].[Id] = [u3].[EmployeeId]
+      LEFT JOIN (
+          SELECT [e1].[Id], [e1].[EmployeeId], [e1].[ManagerId], [e2].[Id] AS [Id0], [e2].[CreatedBy], [e2].[CreatedDate], [e2].[CurrentRoleId], [e2].[DateOfBirth], [e2].[DateOfExit], [e2].[DateOfJoining], [e2].[DisplayName], [e2].[EmailAddress], [e2].[EmployeeId] AS [EmployeeId0], [e2].[FirstName], [e2].[Gender], [e2].[LastName], [e2].[Location], [e2].[MobileNumber], [e2].[ModifiedBy], [e2].[ModifiedDate]
+          FROM [EmployeeManagerMap] AS [e1]
+          INNER JOIN [Employees] AS [e2] ON [e1].[ManagerId] = [e2].[Id]
+      ) AS [s] ON [e0].[Id] = [s].[EmployeeId]
+      ORDER BY [e0].[FirstName], [e0].[LastName], [e0].[Id], [r].[Id], [a].[Id], [u1].[Id], [u2].[Id], [g].[Id], [u3].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [r].[Id], [r].[Certificates], [r].[CreatedDate], [r].[IsDefaultTemplate], [r].[ModifiedDate], [r].[ProfessionalExperience], [r].[ProfileSummary], [r].[Projects], [r].[TemplateName]
+      FROM [ResumeTemplates] AS [r]
+      WHERE [r].[IsDefaultTemplate] = CAST(1 AS bit)
+info: ResumeBuilder.API.Services.ResumeTemplateDocumentService[0]
+      Starting template 1 to PDF conversion for employee 23
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[@__8__locals1_employeeId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[Id], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate], [s].[Id0], [s].[ApplicationId], [s].[CreatedBy0], [s].[CreatedDate0], [s].[ModifiedBy0], [s].[ModifiedDate0], [s].[Name], [s0].[Id], [s0].[AppServers], [s0].[Certifications], [s0].[CreatedBy], [s0].[CreatedDate], [s0].[DataBases], [s0].[EducationId], [s0].[EmployeeId], [s0].[IDEorTools], [s0].[ModifiedBy], [s0].[ModifiedDate], [s0].[TechnologyFamiliarWith], [s0].[TechnologyProficientIn], [s0].[Id0], [s0].[CreatedBy0], [s0].[CreatedDate0], [s0].[ModifiedBy0], [s0].[ModifiedDate0], [s0].[Name], [e2].[Id], [e2].[City], [e2].[CompanyName], [e2].[EmployeeId], [e2].[EndDate], [e2].[Role], [e2].[StartDate], [s1].[Id], [s1].[EmployeeId], [s1].[EndDate], [s1].[ProjectId], [s1].[ProjectName], [s1].[ProjectSummary], [s1].[RolesAndResponsibility], [s1].[StartDate], [s1].[Technologies], [s1].[Id0], [s1].[ClientId], [s1].[CreatedBy], [s1].[CreatedDate], [s1].[EndDate0], [s1].[ModifiedBy], [s1].[ModifiedDate], [s1].[ProjectCode], [s1].[ProjectDisplayName], [s1].[ProjectManager], [s1].[ProjectName0], [s1].[ProjectSummary0], [s1].[ProjectTechnologies], [s1].[StartDate0], [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate], [r].[Id] AS [Id0], [r].[ApplicationId], [r].[CreatedBy] AS [CreatedBy0], [r].[CreatedDate] AS [CreatedDate0], [r].[ModifiedBy] AS [ModifiedBy0], [r].[ModifiedDate] AS [ModifiedDate0], [r].[Name]
+          FROM [Employees] AS [e]
+          LEFT JOIN [RolesMaster] AS [r] ON [e].[CurrentRoleId] = [r].[Id]
+          WHERE [e].[Id] = @__8__locals1_employeeId_0
+      ) AS [s]
+      LEFT JOIN (
+          SELECT [e0].[Id], [e0].[AppServers], [e0].[Certifications], [e0].[CreatedBy], [e0].[CreatedDate], [e0].[DataBases], [e0].[EducationId], [e0].[EmployeeId], [e0].[IDEorTools], [e0].[ModifiedBy], [e0].[ModifiedDate], [e0].[TechnologyFamiliarWith], [e0].[TechnologyProficientIn], [e1].[Id] AS [Id0], [e1].[CreatedBy] AS [CreatedBy0], [e1].[CreatedDate] AS [CreatedDate0], [e1].[ModifiedBy] AS [ModifiedBy0], [e1].[ModifiedDate] AS [ModifiedDate0], [e1].[Name]
+          FROM [EmployeeResume] AS [e0]
+          INNER JOIN [EducationMaster] AS [e1] ON [e0].[EducationId] = [e1].[Id]
+      ) AS [s0] ON [s].[Id] = [s0].[EmployeeId]
+      LEFT JOIN [EmployeeProfessionalExperience] AS [e2] ON [s].[Id] = [e2].[EmployeeId]
+      LEFT JOIN (
+          SELECT [e3].[Id], [e3].[EmployeeId], [e3].[EndDate], [e3].[ProjectId], [e3].[ProjectName], [e3].[ProjectSummary], [e3].[RolesAndResponsibility], [e3].[StartDate], [e3].[Technologies], [p].[Id] AS [Id0], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate] AS [EndDate0], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName] AS [ProjectName0], [p].[ProjectSummary] AS [ProjectSummary0], [p].[ProjectTechnologies], [p].[StartDate] AS [StartDate0]
+          FROM [EmployeeProjectDetails] AS [e3]
+          LEFT JOIN [ProjectMaster] AS [p] ON [e3].[ProjectId] = [p].[Id]
+      ) AS [s1] ON [s].[Id] = [s1].[EmployeeId]
+      LEFT JOIN [ProjectEmployeeMappings] AS [p0] ON [s].[Id] = [p0].[EmployeeId]
+      ORDER BY [s].[Id], [s].[Id0], [s0].[Id], [s0].[Id0], [e2].[Id], [s1].[Id], [s1].[Id0]
+info: ResumeBuilder.API.Services.ResumeGenerationService[0]
+      Retrieved 0 projects for employee 23. Total project details: 0
+info: ResumeBuilder.API.Services.ResumeTemplateDocumentService[0]
+      Found 1 professional experiences
+info: ResumeBuilder.API.Services.ResumeTemplateDocumentService[0]
+      Added Calibri font-family and 11pt font-size styling to HTML elements
+info: ResumeBuilder.API.Services.ResumeTemplateDocumentService[0]
+      Attempting to configure custom style mappings
+info: ResumeBuilder.API.Services.ResumeTemplateDocumentService[0]
+      Applied Calibri font to 21 text runs in the document
+info: ResumeBuilder.API.Services.WordToPdfConversionService[0]
+      Converting Word document to PDF using Aspose.Words
+info: ResumeBuilder.API.Services.WordToPdfConversionService[0]
+      Aspose.Words conversion completed successfully. Output size: 55888 bytes
+info: ResumeBuilder.API.Services.ResumeTemplateDocumentService[0]
+      Successfully converted template 1 to PDF for employee 23. PDF size: 55888 bytes
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [s].[Id], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate], [s].[Id0], [s].[ApplicationId], [s].[CreatedBy0], [s].[CreatedDate0], [s].[ModifiedBy0], [s].[ModifiedDate0], [s].[Name], [s].[Id1], [s].[Name0], [s].[Id2], [s].[EmailAddress0], [s].[EmployeeId0], [s].[IsActive], [s].[Name1], [s].[Password], [s].[PasswordResetToken], [s].[PasswordResetTokenExpiry], [s].[UserName], [s].[Id3], [s].[EmailAddress1], [s].[EmployeeId1], [s].[IsActive0], [s].[Name2], [s].[Password0], [s].[PasswordResetToken0], [s].[PasswordResetTokenExpiry0], [s].[UserName0], [s].[Id4], [s].[Name3], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [s0].[Id], [s0].[EmployeeId], [s0].[ManagerId], [s0].[Id0], [s0].[CreatedBy], [s0].[CreatedDate], [s0].[CurrentRoleId], [s0].[DateOfBirth], [s0].[DateOfExit], [s0].[DateOfJoining], [s0].[DisplayName], [s0].[EmailAddress], [s0].[EmployeeId0], [s0].[FirstName], [s0].[Gender], [s0].[LastName], [s0].[Location], [s0].[MobileNumber], [s0].[ModifiedBy], [s0].[ModifiedDate]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate], [r].[Id] AS [Id0], [r].[ApplicationId], [r].[CreatedBy] AS [CreatedBy0], [r].[CreatedDate] AS [CreatedDate0], [r].[ModifiedBy] AS [ModifiedBy0], [r].[ModifiedDate] AS [ModifiedDate0], [r].[Name], [a].[Id] AS [Id1], [a].[Name] AS [Name0], [u].[Id] AS [Id2], [u].[EmailAddress] AS [EmailAddress0], [u].[EmployeeId] AS [EmployeeId0], [u].[IsActive], [u].[Name] AS [Name1], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id] AS [Id3], [u0].[EmailAddress] AS [EmailAddress1], [u0].[EmployeeId] AS [EmployeeId1], [u0].[IsActive] AS [IsActive0], [u0].[Name] AS [Name2], [u0].[Password] AS [Password0], [u0].[PasswordResetToken] AS [PasswordResetToken0], [u0].[PasswordResetTokenExpiry] AS [PasswordResetTokenExpiry0], [u0].[UserName] AS [UserName0], [g].[Id] AS [Id4], [g].[Name] AS [Name3]
+          FROM [Employees] AS [e]
+          LEFT JOIN [RolesMaster] AS [r] ON [e].[CurrentRoleId] = [r].[Id]
+          LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+          LEFT JOIN [Users] AS [u] ON [e].[CreatedBy] = [u].[Id]
+          LEFT JOIN [Users] AS [u0] ON [e].[ModifiedBy] = [u0].[Id]
+          LEFT JOIN [Genders] AS [g] ON [e].[Gender] = [g].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [s]
+      LEFT JOIN [Users] AS [u1] ON [s].[Id] = [u1].[EmployeeId]
+      LEFT JOIN (
+          SELECT [e0].[Id], [e0].[EmployeeId], [e0].[ManagerId], [e1].[Id] AS [Id0], [e1].[CreatedBy], [e1].[CreatedDate], [e1].[CurrentRoleId], [e1].[DateOfBirth], [e1].[DateOfExit], [e1].[DateOfJoining], [e1].[DisplayName], [e1].[EmailAddress], [e1].[EmployeeId] AS [EmployeeId0], [e1].[FirstName], [e1].[Gender], [e1].[LastName], [e1].[Location], [e1].[MobileNumber], [e1].[ModifiedBy], [e1].[ModifiedDate]
+          FROM [EmployeeManagerMap] AS [e0]
+          INNER JOIN [Employees] AS [e1] ON [e0].[ManagerId] = [e1].[Id]
+      ) AS [s0] ON [s].[Id] = [s0].[EmployeeId]
+      ORDER BY [s].[Id], [s].[Id0], [s].[Id1], [s].[Id2], [s].[Id3], [s].[Id4], [u1].[Id], [s0].[Id]
+info: ResumeBuilder.API.Controllers.ResumeTemplateController[0]
+      Successfully generated PDF document for template 1 - Default Template with employee 23 snippets
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...

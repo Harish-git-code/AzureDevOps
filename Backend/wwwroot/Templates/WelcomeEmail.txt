@@ -1,0 +1,16 @@
+Dear {{FirstName}},
+
+Welcome to Resume Craft! We're excited to have you join our team.
+
+Here are your employee details:
+- Employee ID: {{EmployeeId}}
+- Name: {{FullName}}
+- Email: {{EmailAddress}}
+- Location: {{Location}}
+- Role: {{CurrentRoleName}}
+- Date of Joining: {{DateOfJoining}}{{LoginCredentialsSection}}
+
+Please reach out to your manager or HR team if you have any questions.
+
+Best regards,
+The Resume Craft Team

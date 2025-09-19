@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background-color: #007bff; color: white; padding: 20px; text-align: center; }
+        .content { padding: 20px; background-color: #f9f9f9; }
+        .details { background-color: white; padding: 15px; margin: 20px 0; border-left: 4px solid #007bff; }
+        .footer { text-align: center; padding: 20px; color: #666; }
+        .credentials { background-color: #fff3cd; border-left: 4px solid #ffc107; margin: 20px 0; padding: 15px; }
+        .credentials h3 { color: #856404; }
+        .credentials p { color: #856404; font-weight: bold; }
+        .credentials code { background-color: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to Resume Craft!</h1>
+        </div>
+        <div class="content">
+            <h2>Dear {{FirstName}},</h2>
+            <p>Welcome to Resume Craft! We're excited to have you join our team.</p>
+
+            <div class="details">
+                <h3>Your Employee Details:</h3>
+                <ul>
+                    <li><strong>Employee ID:</strong> {{EmployeeId}}</li>
+                    <li><strong>Name:</strong> {{FullName}}</li>
+                    <li><strong>Email:</strong> {{EmailAddress}}</li>
+                    <li><strong>Location:</strong> {{Location}}</li>
+                    <li><strong>Role:</strong> {{CurrentRoleName}}</li>
+                    <li><strong>Date of Joining:</strong> {{DateOfJoining}}</li>
+                </ul>
+            </div>
+            {{LoginCredentialsHtmlSection}}
+            
+            <p>Please reach out to your manager or HR team if you have any questions.</p>
+        </div>
+        <div class="footer">
+            <p>Best regards,<br>The Resume Craft Team</p>
+        </div>
+    </div>
+</body>
+</html>

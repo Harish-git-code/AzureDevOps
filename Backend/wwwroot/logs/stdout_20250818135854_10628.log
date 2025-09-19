@@ -1,0 +1,32 @@
+info: Program[0]
+      Starting database seeding...
+info: Program[0]
+      Database seeding completed successfully
+info: Program[0]
+      Available roles: Admin, ProjectManager, Employee, HR, TeamLead
+info: Program[0]
+      Available policies: AdminPolicy, ProjectManagerPolicy, EmployeePolicy, HRPolicy, TeamLeadPolicy
+warn: Microsoft.AspNetCore.DataProtection.Repositories.EphemeralXmlRepository[50]
+      Using an in-memory repository. Keys will not be persisted to storage.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[59]
+      Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {b12ed124-1109-4b99-a3e4-d3da6d734bd5} may be persisted to storage in unencrypted form.
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\ResumeBuilderAPI\wwwroot
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+warn: LuckyPennySoftware.AutoMapper.License[0]
+      You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (36ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName]
+      FROM [RolesMaster] AS [r]
+      INNER JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      LEFT JOIN [Users] AS [u] ON [r].[ModifiedBy] = [u].[Id]
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...

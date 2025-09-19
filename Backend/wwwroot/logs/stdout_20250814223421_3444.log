@@ -1,0 +1,674 @@
+info: Program[0]
+      Starting database seeding...
+info: Program[0]
+      Database seeding completed successfully
+info: Program[0]
+      Available roles: Admin, ProjectManager, Employee, HR, TeamLead
+info: Program[0]
+      Available policies: AdminPolicy, ProjectManagerPolicy, EmployeePolicy, HRPolicy, TeamLeadPolicy
+warn: Microsoft.AspNetCore.DataProtection.Repositories.EphemeralXmlRepository[50]
+      Using an in-memory repository. Keys will not be persisted to storage.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[59]
+      Neither user profile nor HKLM registry available. Using an ephemeral key repository. Protected data will be unavailable when application exits.
+warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
+      No XML encryptor configured. Key {3ed39a2e-39b1-463b-abb7-5e532ea37eb2} may be persisted to storage in unencrypted form.
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\ResumeBuilderAPI\wwwroot
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: ResumeBuilder.API.Services.AuthService[0]
+      Attempting login for email: ruchi.s@quadwave.com
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (43ms) [Parameters=[@__email_0='?' (Size = 150)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate], [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name]
+      FROM [Users] AS [u]
+      LEFT JOIN [Employees] AS [e] ON [u].[EmployeeId] = [e].[Id]
+      LEFT JOIN [RolesMaster] AS [r] ON [e].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      WHERE [u].[EmailAddress] = @__email_0 AND [u].[IsActive] = CAST(1 AS bit)
+info: ResumeBuilder.API.Services.AuthService[0]
+      Login successful for email: ruchi.s@quadwave.com, role: Admin
+info: ResumeBuilder.API.Controllers.AuthController[0]
+      Login request from client type: TrustedSpaClient
+warn: LuckyPennySoftware.AutoMapper.License[0]
+      You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+info: ResumeBuilder.API.Services.LicenseService[0]
+      Aspose.Words license applied successfully from: D:\ResumeBuilderAPI\wwwroot\Licenses\Aspose.Total.lic
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [Employees] AS [e]
+warn: Microsoft.EntityFrameworkCore.Query[20504]
+      Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[ModifiedBy], [c].[ModifiedDate], [c].[Name], [s].[Id], [s].[EmployeeId], [s].[EndDate], [s].[ProjectId], [s].[StartDate], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM [ProjectMaster] AS [p]
+      INNER JOIN [Users] AS [u] ON [p].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [p].[ModifiedBy] = [u0].[Id]
+      LEFT JOIN [Users] AS [u1] ON [p].[ProjectManager] = [u1].[Id]
+      LEFT JOIN [ClientMaster] AS [c] ON [p].[ClientId] = [c].[Id]
+      LEFT JOIN (
+          SELECT [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate], [e].[Id] AS [Id0], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId] AS [EmployeeId0], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [ProjectEmployeeMappings] AS [p0]
+          INNER JOIN [Employees] AS [e] ON [p0].[EmployeeId] = [e].[Id]
+      ) AS [s] ON [p].[Id] = [s].[ProjectId]
+      ORDER BY [p].[ProjectName], [p].[Id], [u].[Id], [u0].[Id], [u1].[Id], [c].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM [ResumeTemplates] AS [r]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [r].[Id], [r].[Certificates], [r].[CreatedDate], [r].[IsDefaultTemplate], [r].[ModifiedDate], [r].[ProfessionalExperience], [r].[ProfileSummary], [r].[Projects], [r].[TemplateName]
+      FROM [ResumeTemplates] AS [r]
+      ORDER BY [r].[TemplateName]
+      OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e0].[Id], [e0].[CreatedBy], [e0].[CreatedDate], [e0].[CurrentRoleId], [e0].[DateOfBirth], [e0].[DateOfExit], [e0].[DateOfJoining], [e0].[DisplayName], [e0].[EmailAddress], [e0].[EmployeeId], [e0].[FirstName], [e0].[Gender], [e0].[LastName], [e0].[Location], [e0].[MobileNumber], [e0].[ModifiedBy], [e0].[ModifiedDate], [r].[Id], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Id], [a].[Name], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [g].[Id], [g].[Name], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [s].[Id], [s].[EmployeeId], [s].[ManagerId], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM (
+          SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [Employees] AS [e]
+          ORDER BY [e].[FirstName], [e].[LastName]
+          OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+      ) AS [e0]
+      LEFT JOIN [RolesMaster] AS [r] ON [e0].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      LEFT JOIN [Users] AS [u] ON [e0].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [e0].[ModifiedBy] = [u0].[Id]
+      LEFT JOIN [Genders] AS [g] ON [e0].[Gender] = [g].[Id]
+      LEFT JOIN [Users] AS [u1] ON [e0].[Id] = [u1].[EmployeeId]
+      LEFT JOIN (
+          SELECT [e1].[Id], [e1].[EmployeeId], [e1].[ManagerId], [e2].[Id] AS [Id0], [e2].[CreatedBy], [e2].[CreatedDate], [e2].[CurrentRoleId], [e2].[DateOfBirth], [e2].[DateOfExit], [e2].[DateOfJoining], [e2].[DisplayName], [e2].[EmailAddress], [e2].[EmployeeId] AS [EmployeeId0], [e2].[FirstName], [e2].[Gender], [e2].[LastName], [e2].[Location], [e2].[MobileNumber], [e2].[ModifiedBy], [e2].[ModifiedDate]
+          FROM [EmployeeManagerMap] AS [e1]
+          INNER JOIN [Employees] AS [e2] ON [e1].[ManagerId] = [e2].[Id]
+      ) AS [s] ON [e0].[Id] = [s].[EmployeeId]
+      ORDER BY [e0].[FirstName], [e0].[LastName], [e0].[Id], [r].[Id], [a].[Id], [u].[Id], [u0].[Id], [g].[Id], [u1].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (11ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[ModifiedBy], [c].[ModifiedDate], [c].[Name], [s].[Id], [s].[EmployeeId], [s].[EndDate], [s].[ProjectId], [s].[StartDate], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM [ProjectMaster] AS [p]
+      INNER JOIN [Users] AS [u] ON [p].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [p].[ModifiedBy] = [u0].[Id]
+      LEFT JOIN [Users] AS [u1] ON [p].[ProjectManager] = [u1].[Id]
+      LEFT JOIN [ClientMaster] AS [c] ON [p].[ClientId] = [c].[Id]
+      LEFT JOIN (
+          SELECT [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate], [e].[Id] AS [Id0], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId] AS [EmployeeId0], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [ProjectEmployeeMappings] AS [p0]
+          INNER JOIN [Employees] AS [e] ON [p0].[EmployeeId] = [e].[Id]
+      ) AS [s] ON [p].[Id] = [s].[ProjectId]
+      ORDER BY [p].[ProjectName], [p].[Id], [u].[Id], [u0].[Id], [u1].[Id], [c].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@__managementEligibleRoleNames_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+      FROM [Users] AS [u]
+      LEFT JOIN [Employees] AS [e] ON [u].[EmployeeId] = [e].[Id]
+      LEFT JOIN [RolesMaster] AS [r] ON [e].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      WHERE [e].[Id] IS NOT NULL AND [r].[Id] IS NOT NULL AND [a].[Id] IS NOT NULL AND [a].[Name] IN (
+          SELECT [m].[value]
+          FROM OPENJSON(@__managementEligibleRoleNames_0) WITH ([value] nvarchar(100) '$') AS [m]
+      )
+      ORDER BY [u].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t0].[Id], [t0].[Name], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t0] ON [t].[TechnologyTypeId] = [t0].[Id]
+      INNER JOIN [Users] AS [u] ON [t].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [t].[ModifiedBy] = [u0].[Id]
+      ORDER BY [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[ModifiedBy], [c].[ModifiedDate], [c].[Name], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName]
+      FROM [ClientMaster] AS [c]
+      INNER JOIN [Users] AS [u] ON [c].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [c].[ModifiedBy] = [u0].[Id]
+      ORDER BY [c].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [p1].[Id], [p1].[ClientId], [p1].[CreatedBy], [p1].[CreatedDate], [p1].[EndDate], [p1].[ModifiedBy], [p1].[ModifiedDate], [p1].[ProjectCode], [p1].[ProjectDisplayName], [p1].[ProjectManager], [p1].[ProjectName], [p1].[ProjectSummary], [p1].[ProjectTechnologies], [p1].[StartDate], [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate]
+      FROM (
+          SELECT TOP(1) [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate]
+          FROM [ProjectMaster] AS [p]
+          WHERE [p].[Id] = @__id_0
+      ) AS [p1]
+      LEFT JOIN [ProjectEmployeeMappings] AS [p0] ON [p1].[Id] = [p0].[ProjectId]
+      ORDER BY [p1].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      DELETE FROM [ProjectEmployeeMappings]
+      OUTPUT 1
+      WHERE [Id] = @p0;
+      DELETE FROM [ProjectMaster]
+      OUTPUT 1
+      WHERE [Id] = @p1;
+fail: Microsoft.EntityFrameworkCore.Update[10000]
+      An exception occurred in the database while saving changes for context type 'ResumeBuilder.Data.Context.ResumeBuilderDbContext'.
+      Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+       ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK__EmployeeP__Proje__6383C8BA". The conflict occurred in database "ResumeBuilder", table "dbo.EmployeeProjectDetails", column 'ProjectId'.
+         at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+         at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+         at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+         at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+      --- End of stack trace from previous location ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+      ClientConnectionId:e784f584-b931-450c-9097-dc919a8ee6df
+      Error Number:547,State:0,Class:16
+         --- End of inner exception stack trace ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+      Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+       ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK__EmployeeP__Proje__6383C8BA". The conflict occurred in database "ResumeBuilder", table "dbo.EmployeeProjectDetails", column 'ProjectId'.
+         at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+         at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+         at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+         at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+      --- End of stack trace from previous location ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+      ClientConnectionId:e784f584-b931-450c-9097-dc919a8ee6df
+      Error Number:547,State:0,Class:16
+         --- End of inner exception stack trace ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+fail: ResumeBuilder.API.Controllers.ProjectMasterController[0]
+      Error deleting project with ID 2
+      Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+       ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK__EmployeeP__Proje__6383C8BA". The conflict occurred in database "ResumeBuilder", table "dbo.EmployeeProjectDetails", column 'ProjectId'.
+         at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+         at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+         at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+         at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+      --- End of stack trace from previous location ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+      ClientConnectionId:e784f584-b931-450c-9097-dc919a8ee6df
+      Error Number:547,State:0,Class:16
+         --- End of inner exception stack trace ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at ResumeBuilder.Data.Repositories.ProjectMasterRepository.DeleteAsync(Int32 id) in D:\Nishant\QW_Resume_Builder\ResumeBuilder.Data\Repositories\ProjectMasterRepository.cs:line 139
+         at ResumeBuilder.API.Controllers.ProjectMasterController.DeleteProject(Int32 id) in D:\Nishant\QW_Resume_Builder\ResumeBuilder.API\Controllers\ProjectMasterController.cs:line 190
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [p1].[Id], [p1].[ClientId], [p1].[CreatedBy], [p1].[CreatedDate], [p1].[EndDate], [p1].[ModifiedBy], [p1].[ModifiedDate], [p1].[ProjectCode], [p1].[ProjectDisplayName], [p1].[ProjectManager], [p1].[ProjectName], [p1].[ProjectSummary], [p1].[ProjectTechnologies], [p1].[StartDate], [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate]
+      FROM (
+          SELECT TOP(1) [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate]
+          FROM [ProjectMaster] AS [p]
+          WHERE [p].[Id] = @__id_0
+      ) AS [p1]
+      LEFT JOIN [ProjectEmployeeMappings] AS [p0] ON [p1].[Id] = [p0].[ProjectId]
+      ORDER BY [p1].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      DELETE FROM [ProjectEmployeeMappings]
+      OUTPUT 1
+      WHERE [Id] = @p0;
+      DELETE FROM [ProjectEmployeeMappings]
+      OUTPUT 1
+      WHERE [Id] = @p1;
+      DELETE FROM [ProjectMaster]
+      OUTPUT 1
+      WHERE [Id] = @p2;
+fail: Microsoft.EntityFrameworkCore.Update[10000]
+      An exception occurred in the database while saving changes for context type 'ResumeBuilder.Data.Context.ResumeBuilderDbContext'.
+      Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+       ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK__EmployeeP__Proje__6383C8BA". The conflict occurred in database "ResumeBuilder", table "dbo.EmployeeProjectDetails", column 'ProjectId'.
+         at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+         at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+         at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+         at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+      --- End of stack trace from previous location ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+      ClientConnectionId:e784f584-b931-450c-9097-dc919a8ee6df
+      Error Number:547,State:0,Class:16
+         --- End of inner exception stack trace ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+      Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+       ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK__EmployeeP__Proje__6383C8BA". The conflict occurred in database "ResumeBuilder", table "dbo.EmployeeProjectDetails", column 'ProjectId'.
+         at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+         at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+         at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+         at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+      --- End of stack trace from previous location ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+      ClientConnectionId:e784f584-b931-450c-9097-dc919a8ee6df
+      Error Number:547,State:0,Class:16
+         --- End of inner exception stack trace ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+fail: ResumeBuilder.API.Controllers.ProjectMasterController[0]
+      Error deleting project with ID 4
+      Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+       ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The DELETE statement conflicted with the REFERENCE constraint "FK__EmployeeP__Proje__6383C8BA". The conflict occurred in database "ResumeBuilder", table "dbo.EmployeeProjectDetails", column 'ProjectId'.
+         at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+         at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+         at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+         at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+         at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+         at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+      --- End of stack trace from previous location ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithRowsAffectedOnlyAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+      ClientConnectionId:e784f584-b931-450c-9097-dc919a8ee6df
+      Error Number:547,State:0,Class:16
+         --- End of inner exception stack trace ---
+         at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+         at ResumeBuilder.Data.Repositories.ProjectMasterRepository.DeleteAsync(Int32 id) in D:\Nishant\QW_Resume_Builder\ResumeBuilder.Data\Repositories\ProjectMasterRepository.cs:line 139
+         at ResumeBuilder.API.Controllers.ProjectMasterController.DeleteProject(Int32 id) in D:\Nishant\QW_Resume_Builder\ResumeBuilder.API\Controllers\ProjectMasterController.cs:line 190
+warn: Microsoft.EntityFrameworkCore.Query[10108]
+      Collection navigations are only considered null if their parent entity is null. Use 'Any' to check whether collection navigation 'Employee.Users' is empty.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate], [r].[Id], [a].[Id], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [r].[ApplicationId], [r].[CreatedBy], [r].[CreatedDate], [r].[ModifiedBy], [r].[ModifiedDate], [r].[Name], [a].[Name]
+      FROM [Employees] AS [e]
+      LEFT JOIN [RolesMaster] AS [r] ON [e].[CurrentRoleId] = [r].[Id]
+      LEFT JOIN [ApplicationRole] AS [a] ON [r].[ApplicationId] = [a].[Id]
+      LEFT JOIN [Users] AS [u0] ON [e].[Id] = [u0].[EmployeeId]
+      WHERE EXISTS (
+          SELECT 1
+          FROM [Users] AS [u]
+          WHERE [e].[Id] = [u].[EmployeeId] AND [u].[IsActive] = CAST(1 AS bit))
+      ORDER BY [e].[FirstName], [e].[LastName], [e].[Id], [r].[Id], [a].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [ProjectMaster] AS [p]
+              WHERE [p].[Id] = @__id_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__projectId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[EmployeeId], [p].[EndDate], [p].[ProjectId], [p].[StartDate], [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+      FROM [ProjectEmployeeMappings] AS [p]
+      INNER JOIN [Employees] AS [e] ON [p].[EmployeeId] = [e].[Id]
+      WHERE [p].[ProjectId] = @__projectId_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [ProjectMaster] AS [p]
+              WHERE [p].[Id] = @__id_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate]
+      FROM [ProjectMaster] AS [p]
+      WHERE [p].[Id] = @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__projectId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[EmployeeId], [p].[EndDate], [p].[ProjectId], [p].[StartDate]
+      FROM [ProjectEmployeeMappings] AS [p]
+      WHERE [p].[ProjectId] = @__projectId_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [ProjectEmployeeMappings] ([EmployeeId], [EndDate], [ProjectId], [StartDate])
+      OUTPUT INSERTED.[Id]
+      VALUES (@p0, @p1, @p2, @p3);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [ProjectMaster] AS [p]
+              WHERE [p].[Id] = @__id_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__projectId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[EmployeeId], [p].[EndDate], [p].[ProjectId], [p].[StartDate], [e].[Id], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+      FROM [ProjectEmployeeMappings] AS [p]
+      INNER JOIN [Employees] AS [e] ON [p].[EmployeeId] = [e].[Id]
+      WHERE [p].[ProjectId] = @__projectId_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[ModifiedBy], [c].[ModifiedDate], [c].[Name], [s].[Id], [s].[EmployeeId], [s].[EndDate], [s].[ProjectId], [s].[StartDate], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM [ProjectMaster] AS [p]
+      INNER JOIN [Users] AS [u] ON [p].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [p].[ModifiedBy] = [u0].[Id]
+      LEFT JOIN [Users] AS [u1] ON [p].[ProjectManager] = [u1].[Id]
+      LEFT JOIN [ClientMaster] AS [c] ON [p].[ClientId] = [c].[Id]
+      LEFT JOIN (
+          SELECT [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate], [e].[Id] AS [Id0], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId] AS [EmployeeId0], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [ProjectEmployeeMappings] AS [p0]
+          INNER JOIN [Employees] AS [e] ON [p0].[EmployeeId] = [e].[Id]
+      ) AS [s] ON [p].[Id] = [s].[ProjectId]
+      ORDER BY [p].[ProjectName], [p].[Id], [u].[Id], [u0].[Id], [u1].[Id], [c].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [p1].[Id], [p1].[ClientId], [p1].[CreatedBy], [p1].[CreatedDate], [p1].[EndDate], [p1].[ModifiedBy], [p1].[ModifiedDate], [p1].[ProjectCode], [p1].[ProjectDisplayName], [p1].[ProjectManager], [p1].[ProjectName], [p1].[ProjectSummary], [p1].[ProjectTechnologies], [p1].[StartDate], [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate]
+      FROM (
+          SELECT TOP(1) [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate]
+          FROM [ProjectMaster] AS [p]
+          WHERE [p].[Id] = @__id_0
+      ) AS [p1]
+      LEFT JOIN [ProjectEmployeeMappings] AS [p0] ON [p1].[Id] = [p0].[ProjectId]
+      ORDER BY [p1].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SET NOCOUNT ON;
+      DELETE FROM [ProjectEmployeeMappings]
+      OUTPUT 1
+      WHERE [Id] = @p0;
+      DELETE FROM [ProjectMaster]
+      OUTPUT 1
+      WHERE [Id] = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [p].[Id], [p].[ClientId], [p].[CreatedBy], [p].[CreatedDate], [p].[EndDate], [p].[ModifiedBy], [p].[ModifiedDate], [p].[ProjectCode], [p].[ProjectDisplayName], [p].[ProjectManager], [p].[ProjectName], [p].[ProjectSummary], [p].[ProjectTechnologies], [p].[StartDate], [u].[Id], [u].[EmailAddress], [u].[EmployeeId], [u].[IsActive], [u].[Name], [u].[Password], [u].[PasswordResetToken], [u].[PasswordResetTokenExpiry], [u].[UserName], [u0].[Id], [u0].[EmailAddress], [u0].[EmployeeId], [u0].[IsActive], [u0].[Name], [u0].[Password], [u0].[PasswordResetToken], [u0].[PasswordResetTokenExpiry], [u0].[UserName], [u1].[Id], [u1].[EmailAddress], [u1].[EmployeeId], [u1].[IsActive], [u1].[Name], [u1].[Password], [u1].[PasswordResetToken], [u1].[PasswordResetTokenExpiry], [u1].[UserName], [c].[Id], [c].[CreatedBy], [c].[CreatedDate], [c].[ModifiedBy], [c].[ModifiedDate], [c].[Name], [s].[Id], [s].[EmployeeId], [s].[EndDate], [s].[ProjectId], [s].[StartDate], [s].[Id0], [s].[CreatedBy], [s].[CreatedDate], [s].[CurrentRoleId], [s].[DateOfBirth], [s].[DateOfExit], [s].[DateOfJoining], [s].[DisplayName], [s].[EmailAddress], [s].[EmployeeId0], [s].[FirstName], [s].[Gender], [s].[LastName], [s].[Location], [s].[MobileNumber], [s].[ModifiedBy], [s].[ModifiedDate]
+      FROM [ProjectMaster] AS [p]
+      INNER JOIN [Users] AS [u] ON [p].[CreatedBy] = [u].[Id]
+      LEFT JOIN [Users] AS [u0] ON [p].[ModifiedBy] = [u0].[Id]
+      LEFT JOIN [Users] AS [u1] ON [p].[ProjectManager] = [u1].[Id]
+      LEFT JOIN [ClientMaster] AS [c] ON [p].[ClientId] = [c].[Id]
+      LEFT JOIN (
+          SELECT [p0].[Id], [p0].[EmployeeId], [p0].[EndDate], [p0].[ProjectId], [p0].[StartDate], [e].[Id] AS [Id0], [e].[CreatedBy], [e].[CreatedDate], [e].[CurrentRoleId], [e].[DateOfBirth], [e].[DateOfExit], [e].[DateOfJoining], [e].[DisplayName], [e].[EmailAddress], [e].[EmployeeId] AS [EmployeeId0], [e].[FirstName], [e].[Gender], [e].[LastName], [e].[Location], [e].[MobileNumber], [e].[ModifiedBy], [e].[ModifiedDate]
+          FROM [ProjectEmployeeMappings] AS [p0]
+          INNER JOIN [Employees] AS [e] ON [p0].[EmployeeId] = [e].[Id]
+      ) AS [s] ON [p].[Id] = [s].[ProjectId]
+      ORDER BY [p].[ProjectName], [p].[Id], [u].[Id], [u0].[Id], [u1].[Id], [c].[Id], [s].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__technologyIds_0='?' (Size = 4000)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[CreatedBy], [t].[CreatedDate], [t].[ModifiedBy], [t].[ModifiedDate], [t].[Name], [t].[TechnologyTypeId], [t1].[Id], [t1].[Name]
+      FROM [TechnologyMaster] AS [t]
+      INNER JOIN [TechnologyType] AS [t1] ON [t].[TechnologyTypeId] = [t1].[Id]
+      WHERE [t].[Id] IN (
+          SELECT [t0].[value]
+          FROM OPENJSON(@__technologyIds_0) WITH ([value] int '$') AS [t0]
+      )
+      ORDER BY [t1].[Name], [t].[Name]
+info: Microsoft.Hosting.Lifetime[0]
+      Application is shutting down...
